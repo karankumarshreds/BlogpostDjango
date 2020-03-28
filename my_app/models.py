@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import  User
 from PIL import Image
 
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    content = models.TextField(max_length=600)
+    date = models.DateTimeField(auto_now=True)
+
 
 class Search(models.Model):
     search = models.CharField(max_length=100),
@@ -29,6 +35,7 @@ class Profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
 
 
 

@@ -3,15 +3,26 @@ from django.contrib.auth.forms import  UserCreationForm as uc
 from django.contrib.auth.forms import AuthenticationForm as af
 from django.contrib.auth import login as dj_login
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdate, ProfileUpdate
 from django.contrib import messages
+from django.views.generic import ListView
 
 URL = "https://oslo.craigslist.org/search/hhh?query=bike"
 
 def home(request):
-    return render(request, 'home.html', {})
+    post = Post.objects.all()
+    return render(request, 'home.html', {'post': post})
+
+class PostListView(ListView):
+    model = Post
+    #generic format : <app>/<model>_<viewtype>.html
+    template_name = 'home.html'
+    context_object_name = 'post'
+    ordering = ['-date']
+
+
 
 def search(request):
     serch = request.POST.get('search')
@@ -98,4 +109,6 @@ def update_profile(request):
             'p_form': p_form
         }
         return render(request, 'update_profile.html', context)
+
+
 
