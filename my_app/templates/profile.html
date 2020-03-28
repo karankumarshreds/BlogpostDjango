@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>User Profile</h2>
+{{ user }}
+<img src="{{ image }}" width="100">
+{#{{ image }}#}
+
+</br>
+{#{% if user.profile.status %}#}
+{#    {{ user.profile.status }}#}
+{#{% else %}#}
+{#    <form action="{% url 'profile' %}" method="post">#}
+{#        {%csrf_token%}#}
+{#        <input type="text" placeholder="type here" name="status">#}
+{#        <button type="submit">save</button>#}
+{#    </form>#}
+{#{% endif %}#}
+{% endblock %}

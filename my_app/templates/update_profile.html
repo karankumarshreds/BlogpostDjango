@@ -1,0 +1,6 @@
+<form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ u_form }}
+    {{ p_form }}
+    <button type="submit">submit</button>
+</form>
