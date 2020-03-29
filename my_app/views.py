@@ -7,7 +7,7 @@ from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdate, ProfileUpdate
 from django.contrib import messages
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView
 
 URL = "https://oslo.craigslist.org/search/hhh?query=bike"
 
@@ -21,6 +21,16 @@ class PostListView(ListView):
     template_name = 'home.html'
     context_object_name = 'post'
     ordering = ['-date']
+
+#using generic format this time
+class PostDetailView(DetailView): 
+    model = Post 
+
+class PostCreateView(CreateView):
+    model = Post 
+    fields = ['title', 'content']
+    #generic name : <model>_form
+    
 
 
 

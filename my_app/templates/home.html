@@ -72,7 +72,7 @@
                 
 
             {%for post in post%}
-              <h1>{{post.title}}</h1>
+              <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
               <h2>{{post.content}}</h2>
               <p>{{post.date}}</p>
             {%endfor%}
