@@ -1,1 +1,17 @@
-ccreate hereeeeeee
+{%extends 'base.html'%}z
+
+{%load crispy_forms_tags%}
+
+{%block content%}
+<div class="container">    
+    <form method="POST">
+      
+            {%csrf_token%}
+            {{form}}
+            <button type="submit" > Create</button>    
+        
+    </form>
+</div>
+{%endblock%}
+
+{%crispy form%}

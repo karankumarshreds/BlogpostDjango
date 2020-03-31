@@ -1,12 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import  User
 from PIL import Image
+from django.urls import reverse
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.TextField(max_length=600)
     date = models.DateTimeField(auto_now=True)
+
+    ################################################
+    ####  This will fetch the url 'post_detail' ####
+    ####  and take the 'pk' value and get the   ####
+    ####  object with that pk  and  pass it to  ####
+    ####     to the classView with object       ####
+    ################################################  
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk': self.pk})
+    
+    def instance(self):
+        return self.user
 
 
 class Search(models.Model):

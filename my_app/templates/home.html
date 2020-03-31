@@ -2,82 +2,27 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="center">
-        <h2>What do you wanna search?</h2>
-
-            <form action="{% url 'search' %}" method="post">
-                {% csrf_token %}
-                <input type="text" name="search" placeholder="search">
-                <input type="submit" name="submit">
-            </form>
-        </div>
-    <h1 class="my-5">{{ serch }}</h1>
-
-            <div class="row">
-                <div class="col s12 m4">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="static/images/img.png">
-                      <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="#">This is a link</a>
-                    </div>
+                  <div class="card card-background container-fluid" >
                   </div>
-                </div>
 
-
-
-            <div class="row">
-                <div class="col s12 m4">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="static/images/img.png">
-                      <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="#">This is a link</a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row">
-                <div class="col s12 m4">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src="static/images/img.png">
-                      <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                      <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="#">This is a link</a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            </div>
                 
-
+            <div class="container all-posts">
             {%for post in post%}
               <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
               <h2>{{post.content}}</h2>
               <p>{{post.date}}</p>
+                {%if user.is_authenticated%}
+                    {%if user == post.user%}
+                      <form action="{%url 'post_delete' post.id %}" method="POST">
+                        {%csrf_token%}
+                        <button type="submit">Delete</button>
+                      </form>
+                    {%endif%}
+                {%endif%}
             {%endfor%}
+            </div>
 
-    </div>
+    
 
 
 

@@ -1,26 +1,79 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Craigslist</title>
+    <title>Reach Out</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Oswald:wght@500&display=swap" rel="stylesheet">
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+      .profile{
+        color: #64b5f6 !important;
+        font-weight: 500 !important;
+        font-size: larger !important;
+        margin-top: 8px !important;
+      }
+      .nav-dp{
+        margin-top: 20px !important;
+        border-radius: 50%;
+      }
+      .brand-logo{
+        color: #64b5f6 !important;
+        margin-top: 8px !important;
+        font-family:'Oswald', sans-serif !important;
+      }
+      .navbar{
+        width: 85%;
+
+        font-family:'Oswald', sans-serif !important;
+      }
+      .banner{
+        height: 30em;
+        width: auto;
+      }
+      .card-title{
+        font-family:'Oswald', sans-serif !important;
+      }
+      .navbar-bar{
+        height: 80px;
+        box-shadow: none !important;
+      }
+      .card{
+        font-family: 'Baloo Thambi 2', cursive;
+        box-shadow: none !important;
+      }
+
+      .card-background{
+        background-image: url('static/images/banner2.jpg') !important;
+        background-size: 100% 100% !important;
+        width: 100% !important;
+        height: 500px !important;
+        background-size: cover !important;
+      }
+    </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-wrapper container">
-      <a href="/" class="brand-logo">Craigslist</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{% url 'register' %}">register</a></li>
-        <li><a href="{% url 'login' %}">login</a></li>
-        <li><a href="{% url 'profile' %}">profile</a></li>
+  <nav class="blue navbar-bar  white">
+    <div class="nav-wrapper container navbar ">
+      <a href="/" class="brand-logo left">ReachOut</a>
+      <ul id="nav-mobile" class="right">
+        {%if user.is_authenticated%}
+          <li><img class="nav-dp" src="{{ user.profile.image.url }}" width="45" align="center""></li>
+          <li><a class = "profile" href="{% url 'profile' %}">profile</a></li>
+        {%else%}
+          <li><a href="{% url 'register' %}">register</a></li>
+          <li><a href="{% url 'login' %}">login</a></li>
+        {%endif%}
       </ul>
     </div>
   </nav>
 
+  
 
     {% block content %}
     {% endblock %}
