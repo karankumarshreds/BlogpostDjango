@@ -8,7 +8,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Oswald:wght@500&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <style>
@@ -16,7 +16,19 @@
         color: #64b5f6 !important;
         font-weight: 500 !important;
         font-size: larger !important;
-        margin-top: 8px !important;
+        margin-top: 16px !important;
+      }
+      .register{
+        color: #64b5f6 !important;
+        font-weight: 500 !important;
+        font-size: larger !important;
+        margin-top: 16px !important;
+      }
+      .login{
+        color: #64b5f6 !important;
+        font-weight: 500 !important;
+        font-size: larger !important;
+        margin-top: 16px !important;
       }
       .nav-dp{
         margin-top: 20px !important;
@@ -24,23 +36,35 @@
       }
       .brand-logo{
         color: #64b5f6 !important;
-        margin-top: 8px !important;
-        font-family:'Oswald', sans-serif !important;
+        margin-top: 18px !important;
+        /* font-family:'Oswald', sans-serif !important; */
+        font-family: 'Baloo Thambi 2', cursive;
+        font-size: 3em !important;
+        font-weight: 900;
       }
       .navbar{
         width: 85%;
+        /* font-family:'Oswald', sans-serif !important; */
+        font-family: 'Baloo Thambi 2', cursive;
+      }
 
-        font-family:'Oswald', sans-serif !important;
-      }
-      .banner{
-        height: 30em;
-        width: auto;
-      }
       .card-title{
-        font-family:'Oswald', sans-serif !important;
+        font-family: 'Baloo Thambi 2', cursive;
+        /* font-family:'Oswald', sans-serif !important; */
+        padding-top: 60px;
+        padding-left: 40px;
+        font-size: 3.5em !important;
+        font-weight: 800 !important;
+        /* color: #1f8fea; */
+        color: white !important;
+        
+      }
+      h2.card-title{
+        text-shadow: black !important;
+        
       }
       .navbar-bar{
-        height: 80px;
+        height: 70px;
         box-shadow: none !important;
       }
       .card{
@@ -55,19 +79,23 @@
         height: 500px !important;
         background-size: cover !important;
       }
+      .material-icons{
+
+        font-size: 50px !important;
+      }
     </style>
 </head>
 <body>
   <nav class="blue navbar-bar  white">
     <div class="nav-wrapper container navbar ">
-      <a href="/" class="brand-logo left">ReachOut</a>
+      <a href="/" class="brand-logo left">ReachOut <i class=" medium material-icons ">bubble_chart</i></a>
       <ul id="nav-mobile" class="right">
         {%if user.is_authenticated%}
           <li><img class="nav-dp" src="{{ user.profile.image.url }}" width="45" align="center""></li>
           <li><a class = "profile" href="{% url 'profile' %}">profile</a></li>
         {%else%}
-          <li><a href="{% url 'register' %}">register</a></li>
-          <li><a href="{% url 'login' %}">login</a></li>
+          <li><a class="register" href="{% url 'register' %}">register</a></li>
+          <li><a class="login" href="{% url 'login' %}">login</a></li>
         {%endif%}
       </ul>
     </div>
