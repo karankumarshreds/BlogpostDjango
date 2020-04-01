@@ -10,8 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
     <style>
+      .express{
+        color: #338cd4 !important;
+        font-weight: 500 !important;  
+        font-family: 'Baloo Thambi 2', cursive;
+      }
+      .quote{
+        color: black !important;
+        margin-bottom: 85px !important;
+      }
+      .parallax{
+        position:static !important;
+      }
       .profile{
         color: #64b5f6 !important;
         font-weight: 500 !important;
@@ -79,9 +93,14 @@
         height: 500px !important;
         background-size: cover !important;
       }
+      
       .material-icons{
-
         font-size: 50px !important;
+      }
+      .get-started{
+        margin-left: 42px !important;
+        font-family: 'Baloo Thambi 2', cursive !important;
+        font-weight: 500 !important;
       }
     </style>
 </head>
@@ -101,7 +120,6 @@
     </div>
   </nav>
 
-  
 
     {% block content %}
     {% endblock %}

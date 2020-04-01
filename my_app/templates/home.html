@@ -1,13 +1,40 @@
 {% extends 'base.html' %}
-
+{%load static%}
 {% block content %}
+
+
+
 
                   <div class="card card-background container-fluid" >
                     <h2 class="card-title">Write your heart out..</h2>
+                    <a class="waves-effect waves-light btn-small get-started blue lighten-2">Get Started</a>
+                  </div>
+            
+
+                  <div class="express container" align="center">
+                    <h1 class="express-yourself" >Express Yourself</h1>
+                    <div class="quote">
+                    <h5 >Live life as though nobody is watching, and express yourself as though everyone is listening.
+                    </h5>
+                    <h5>-Nelson Mandela</h5>
+                    </div>
                   </div>
 
+
+                  <div class="parallax-container">
+                    <div class="parallax">
+                      <img src="/static/images/backgound2.jpg" class="responsive-img">
+                    </div>
+                  </div>
+                  <script> 
+                    //Initialise 
+                          $(document).ready(function(){
+                            $('.parallax').parallax();
+                          }); 
+                    </script>
                 
-            <!-- <div class="container all-posts">
+            <!-- <div class="container all-posts ">
+  
             {%for post in post%}
               <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
               <h2>{{post.content}}</h2>
@@ -21,9 +48,9 @@
                     {%endif%}
                 {%endif%}
             {%endfor%}
+          
             </div> -->
 
-    
 
 
 
