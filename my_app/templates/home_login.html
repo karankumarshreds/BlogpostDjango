@@ -9,6 +9,10 @@
               <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
               <h2>{{post.content}}</h2>
               <p>{{post.date}}</p>
+              <form action="{%url 'like' post.id %}" method="POST">
+                {%csrf_token%}
+                <button type="submit">like</button>
+              </form>
                 {%if user.is_authenticated%}
                     {%if user == post.user%}
                       <form action="{%url 'post_delete' post.id %}" method="POST">

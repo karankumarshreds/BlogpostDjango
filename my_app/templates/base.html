@@ -29,7 +29,7 @@
         {%if user.is_authenticated%}
           <li><img class="nav-dp" src="{{ user.profile.image.url }}" width="40" align="center""></li>
           <li><a class = "profile" href="{% url 'profile' %}">profile</a></li>
-          <li><a class="login" href="{% url 'login' %}">logout</a></li>
+          <li><a class="login" href="{% url 'logout' %}">logout</a></li>
         {%else%}
           <li><a class="register" href="{% url 'register' %}">register</a></li>
           <li><a class="login" href="{% url 'login' %}">login</a></li>

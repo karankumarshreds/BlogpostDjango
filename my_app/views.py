@@ -119,10 +119,15 @@ def login(request):
     }
     return render(request, 'login.html', context)
 
-def logout():
+def logout(request):
+    dj_logout(request)
+    return redirect ('/')
+
+def like(request, pk):
     if request.method == 'POST':
-        logout(request)
-        redirect ('/')
+        print(pk)
+        return redirect('home_login')
+    
 
 
 #my long way for profile + update
