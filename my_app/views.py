@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import  UserCreationForm as uc
 from django.contrib.auth.forms import AuthenticationForm as af
 from django.contrib.auth import login as dj_login
+from django.contrib.auth import logout as dj_logout
 from django.contrib.auth.models import User
 from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
@@ -27,7 +28,7 @@ def home(request):
 class PostListView(ListView):
     model = Post
     #generic format : <app>/<model>_<viewtype>.html
-    template_name = 'home.html'
+    template_name = 'home_login.html'
     context_object_name = 'post'
     ordering = ['-date']
 
@@ -117,6 +118,12 @@ def login(request):
         'form': form,
     }
     return render(request, 'login.html', context)
+
+def logout():
+    if request.method == 'POST':
+        logout(request)
+        redirect ('/')
+
 
 #my long way for profile + update
 # @login_required(login_url='/login')

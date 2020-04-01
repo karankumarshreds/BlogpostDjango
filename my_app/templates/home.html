@@ -7,7 +7,11 @@
 
                   <div class="card card-background container-fluid" >
                     <h2 class="card-title">Write your heart out..</h2>
-                    <a class="waves-effect waves-light btn-small get-started blue lighten-2">Get Started</a>
+                    {%if user.is_authenticated%}
+                    <a href="{% url 'home_login' %}" class="waves-effect waves-light btn-small get-started explore">Explore Posts</a>
+                    {%else%}
+                    <a href="{% url 'register' %}" class="waves-effect waves-light btn-small get-started ">Get Started</a>
+                    {%endif%}
                   </div>
             
 
@@ -23,7 +27,7 @@
 
                   <div class="parallax-container">
                     <div class="parallax">
-                      <img src="/static/images/backgound2.jpg" class="responsive-img">
+                      <img src="/static/images/background3.jpg" class=" background3 responsive-img">
                     </div>
                   </div>
                   <script> 
@@ -33,26 +37,62 @@
                           }); 
                     </script>
                 
-            <!-- <div class="container all-posts ">
-  
-            {%for post in post%}
-              <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
-              <h2>{{post.content}}</h2>
-              <p>{{post.date}}</p>
-                {%if user.is_authenticated%}
-                    {%if user == post.user%}
-                      <form action="{%url 'post_delete' post.id %}" method="POST">
-                        {%csrf_token%}
-                        <button type="submit">Delete</button>
-                      </form>
-                    {%endif%}
-                {%endif%}
-            {%endfor%}
-          
-            </div> -->
+            <div class="quote-second" align="center">
+            <h5>
+              We help you collect, manage and share your thoughts with the world. </h5> 
+              <h5>So join today and be 
+              a part of the family.
+            </h5>
+          </br>
+            <a class="waves-effect waves-light btn pt-10"><i class="material-icons right">group</i>Sign Up</a>
+          </div>
+
+            <div class="row container cards">
+                <div class="col s12 m4">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="/static/images/card2.jpg">
+                    <span class="card-title">Card Title</span>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                  </div>
+                  <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                  </div>
+                </div>
+              </div>
+            
+
+            <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="/static/images/card1.jpg">
+                <span class="card-title">Card Title</span>
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="/static/images/card3.jpg">
+                <span class="card-title">Card Title</span>
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+              </div>
+            </div>
+          </div>
 
 
+        </div>
+        
+   
 
-
-
+          </li>
+            
 {% endblock %}

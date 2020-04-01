@@ -1,0 +1,103 @@
+.express{
+    color: #338cd4 !important;
+    font-weight: 500 !important;  
+    font-family: 'Baloo Thambi 2', cursive;
+  }
+  .quote{
+    color: black !important;
+    margin-bottom: 75px !important;
+  }
+
+  .quote-second{
+    padding: 5% !important;
+  }
+  .parallax{
+    position:static !important;
+  }
+  .profile{
+    color: #64b5f6 !important;
+    font-weight: 500 !important;
+    font-size: larger !important;
+    margin-top: 16px !important;
+  }
+  .register{
+    color: #64b5f6 !important;
+    font-weight: 500 !important;
+    font-size: larger !important;
+    margin-top: 16px !important;
+  }
+  .login{
+    color: #64b5f6 !important;
+    font-weight: 500 !important;
+    font-size: larger !important;
+    margin-top: 16px !important;
+  }
+  .nav-dp{
+    margin-top: 27px !important;
+    border-radius: 50%;
+    margin-left: 5px !important;
+  }
+  .brand-logo{
+    color: #64b5f6 !important;
+    margin-top: 18px !important;
+    /* font-family:'Oswald', sans-serif !important; */
+    font-family: 'Baloo Thambi 2', cursive;
+    font-size: 3em !important;
+    font-weight: 900;
+    padding-right: 5% !important;
+  }
+  .navbar{
+    width: 90%;
+    /* font-family:'Oswald', sans-serif !important; */
+    font-family: 'Baloo Thambi 2', cursive;
+  }
+
+  .card-title{
+    font-family: 'Baloo Thambi 2', cursive;
+    /* font-family:'Oswald', sans-serif !important; */
+    padding-top: 60px;
+    padding-left: 40px;
+    font-size: 3.5em !important;
+    font-weight: 800 !important;
+    /* color: #1f8fea; */
+    color: white !important;
+    
+  }
+  h2.card-title{
+    text-shadow: black !important;
+    
+  }
+  .navbar-bar{
+    height: 70px;
+    box-shadow: none !important;
+  }
+  .card{
+    font-family: 'Baloo Thambi 2', cursive;
+    box-shadow: none !important;
+  }
+
+  .card-background{
+    background-image: url('/static/images/banner2.jpg') !important;
+    background-size: 100% 100% !important;
+    width: 100% !important;
+    height: 500px !important;
+    background-size: cover !important;
+  }
+  
+  .material-icons{
+    font-size: 50px !important;
+  }
+  .get-started{
+    margin-left: 42px !important;
+    font-family: 'Baloo Thambi 2', cursive !important;
+    font-weight: 500 !important;
+  }
+
+  .backgound3{
+      max-width: 100% !important;
+      image-resolution: auto;
+  }
+
+  .cards{
+      margin-top: 20px !important;
+  }

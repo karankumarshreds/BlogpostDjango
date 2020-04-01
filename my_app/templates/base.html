@@ -13,105 +13,23 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-    <style>
-      .express{
-        color: #338cd4 !important;
-        font-weight: 500 !important;  
-        font-family: 'Baloo Thambi 2', cursive;
-      }
-      .quote{
-        color: black !important;
-        margin-bottom: 85px !important;
-      }
-      .parallax{
-        position:static !important;
-      }
-      .profile{
-        color: #64b5f6 !important;
-        font-weight: 500 !important;
-        font-size: larger !important;
-        margin-top: 16px !important;
-      }
-      .register{
-        color: #64b5f6 !important;
-        font-weight: 500 !important;
-        font-size: larger !important;
-        margin-top: 16px !important;
-      }
-      .login{
-        color: #64b5f6 !important;
-        font-weight: 500 !important;
-        font-size: larger !important;
-        margin-top: 16px !important;
-      }
-      .nav-dp{
-        margin-top: 20px !important;
-        border-radius: 50%;
-      }
-      .brand-logo{
-        color: #64b5f6 !important;
-        margin-top: 18px !important;
-        /* font-family:'Oswald', sans-serif !important; */
-        font-family: 'Baloo Thambi 2', cursive;
-        font-size: 3em !important;
-        font-weight: 900;
-      }
-      .navbar{
-        width: 85%;
-        /* font-family:'Oswald', sans-serif !important; */
-        font-family: 'Baloo Thambi 2', cursive;
-      }
-
-      .card-title{
-        font-family: 'Baloo Thambi 2', cursive;
-        /* font-family:'Oswald', sans-serif !important; */
-        padding-top: 60px;
-        padding-left: 40px;
-        font-size: 3.5em !important;
-        font-weight: 800 !important;
-        /* color: #1f8fea; */
-        color: white !important;
-        
-      }
-      h2.card-title{
-        text-shadow: black !important;
-        
-      }
-      .navbar-bar{
-        height: 70px;
-        box-shadow: none !important;
-      }
-      .card{
-        font-family: 'Baloo Thambi 2', cursive;
-        box-shadow: none !important;
-      }
-
-      .card-background{
-        background-image: url('static/images/banner2.jpg') !important;
-        background-size: 100% 100% !important;
-        width: 100% !important;
-        height: 500px !important;
-        background-size: cover !important;
-      }
-      
-      .material-icons{
-        font-size: 50px !important;
-      }
-      .get-started{
-        margin-left: 42px !important;
-        font-family: 'Baloo Thambi 2', cursive !important;
-        font-weight: 500 !important;
-      }
-    </style>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
   <nav class="blue navbar-bar  white">
     <div class="nav-wrapper container navbar ">
+      {%if user.is_authenticated%}
+      <a href="{%url 'home_login'%}" class="brand-logo left">ReachOut <i class=" medium material-icons ">bubble_chart</i></a>
+      <ul id="nav-mobile" class="right">
+        
+      {%else%}
       <a href="/" class="brand-logo left">ReachOut <i class=" medium material-icons ">bubble_chart</i></a>
       <ul id="nav-mobile" class="right">
+      {%endif%}
         {%if user.is_authenticated%}
-          <li><img class="nav-dp" src="{{ user.profile.image.url }}" width="45" align="center""></li>
+          <li><img class="nav-dp" src="{{ user.profile.image.url }}" width="40" align="center""></li>
           <li><a class = "profile" href="{% url 'profile' %}">profile</a></li>
+          <li><a class="login" href="{% url 'login' %}">logout</a></li>
         {%else%}
           <li><a class="register" href="{% url 'register' %}">register</a></li>
           <li><a class="login" href="{% url 'login' %}">login</a></li>
