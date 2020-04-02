@@ -126,17 +126,16 @@ def logout(request):
 def like(request, pk):
     if request.method == 'POST':
         uid = request.user.id
-        print(pk)
-        print(uid)
         # print(Likes.objects.filter(user=uid).filter(liked_posts=pk).get())
         likes = Likes.objects.filter(user=uid).filter(liked_posts=pk).first()
         
         if likes:
-            print('passsss')
+            pass
         else:
-            cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
-            print('count : ' + str(cnt))
-            l = Likes(count=cnt+1, liked_posts=pk)
+            # cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
+            count = len(Likes.objects.filter(liked_posts=pk))
+            print('count : ' + str(count))
+            l = Likes(count=count+1, liked_posts=pk)
             l.save()
             l.user.add(request.user)
             l.save()
