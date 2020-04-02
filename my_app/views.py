@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm as af
 from django.contrib.auth import login as dj_login
 from django.contrib.auth import logout as dj_logout
 from django.contrib.auth.models import User
-from .models import Profile, Post
+from .models import Profile, Post, Likes
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin as lrm 
 from django.contrib.auth.mixins import UserPassesTestMixin as uptm
@@ -125,8 +125,22 @@ def logout(request):
 
 def like(request, pk):
     if request.method == 'POST':
+        uid = request.user.id
         print(pk)
-        return redirect('home_login')
+        print(uid)
+        # print(Likes.objects.filter(user=uid).filter(liked_posts=pk).get())
+        likes = Likes.objects.filter(user=uid).filter(liked_posts=pk).first()
+        
+        if likes:
+            print('passsss')
+        else:
+            cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
+            print('count : ' + str(cnt))
+            l = Likes(count=cnt+1, liked_posts=pk)
+            l.save()
+            l.user.add(request.user)
+            l.save()
+            return redirect('home_login')
     
 
 

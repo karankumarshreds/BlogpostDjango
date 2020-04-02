@@ -21,6 +21,11 @@ class Post(models.Model):
     def instance(self):
         return self.user
 
+class Likes(models.Model):
+    user = models.ManyToManyField(User)
+    count = models.IntegerField(default=0)
+    liked_posts = models.IntegerField()
+
 
 class Search(models.Model):
     search = models.CharField(max_length=100),
