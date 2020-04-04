@@ -121,25 +121,34 @@ def logout(request):
     dj_logout(request)
     return redirect ('/')
 
-def like(request, pk):
-    if request.method == 'POST':
-        uid = request.user.id
-        # print(Likes.objects.filter(user=uid).filter(liked_posts=pk).get())
-        likes = Likes.objects.filter(user=uid).filter(liked_posts=pk).first()
-        count = len(Likes.objects.filter(liked_posts=pk))
-        if likes:
-            print('count ------> already--->: ' + str(count))
-            return redirect('home_login')
-        else:
-            # cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
-            print('count ------>: ' + str(count))
-            l = Likes(count=count+1, liked_posts=pk)
-            l.save()
-            l.user.add(request.user)
-            l.save()
-            return redirect('home_login')
+# def like(request, pk):
+#     if request.method == 'POST':
+#         uid = request.user.id
+#         # print(Likes.objects.filter(user=uid).filter(liked_posts=pk).get())
+#         likes = Likes.objects.filter(user=uid).filter(liked_posts=pk).first()
+#         count = len(Likes.objects.filter(liked_posts=pk))
+#         if likes:
+#             print('count ------> already--->: ' + str(count))
+#             return redirect('home_login')
+#         else:
+#             # cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
+#             print('count ------>: ' + str(count))
+#             l = Likes(count=count+1, liked_posts=pk)
+#             l.save()
+#             l.user.add(request.user)
+#             l.save()
+#             return redirect('home_login')
 
-    
+def like(request, pk):
+    uid = request.user.id 
+    instance = Post.objects.filter(id=pk).get()
+    if request.user in instance.likes.all():
+        instance.likes.remove(uid)
+        return redirect('home_login')
+    else:    
+        instance.likes.add(uid)
+        instance.save()
+        return redirect('home_login')
 
 
 #my long way for profile + update

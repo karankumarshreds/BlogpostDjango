@@ -12,10 +12,19 @@
               <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
               <h2>{{post.content}}</h2>
               <p>{{post.date}}</p>
+              <h5>{{post.likes.count}}</h5>
+              {%if user in post.likes.all%}
+                <form action="{%url 'like' post.id %}" method="POST">
+                  {%csrf_token%}
+                  <button type="submit" id="like" >unlike</button>
+                </form>
+              {%else%}
               <form action="{%url 'like' post.id %}" method="POST">
                 {%csrf_token%}
                 <button type="submit" id="like" >like</button>
               </form>
+              {%endif%}
+              
               <h5>{{post.likes.like_post}}</h5>
                 {%if user.is_authenticated%}
                     {%if user == post.user%}

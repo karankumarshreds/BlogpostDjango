@@ -4,10 +4,11 @@ from PIL import Image
 from django.urls import reverse
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    content = models.TextField(max_length=600)
-    date = models.DateTimeField(auto_now=True)
+    user        = models.ForeignKey(User, on_delete=models.CASCADE)
+    title       = models.CharField(max_length=200)
+    content     = models.TextField(max_length=600)
+    date        = models.DateTimeField(auto_now=True)
+    likes       = models.ManyToManyField(User, blank=True, related_name='post_likes')
 
     ################################################
     ####  This will fetch the url 'post_detail' ####
@@ -22,8 +23,8 @@ class Post(models.Model):
         return self.user
 
 class Likes(models.Model):
-    user = models.ManyToManyField(User)
-    count = models.IntegerField(default=0)
+    # user = models.ManyToManyField(User)
+    # count = models.IntegerField(default=0)
     liked_posts = models.IntegerField()
 
 
