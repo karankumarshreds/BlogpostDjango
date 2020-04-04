@@ -17,20 +17,28 @@ from django.views.generic import (ListView,
                                 UpdateView,
                                 DeleteView)
 
-URL = "https://oslo.craigslist.org/search/hhh?query=bike"
-
 
 def home(request):
     post = Post.objects.all()
     return render(request, 'home.html', {'post': post})
 
 
-class PostListView(ListView):
-    model = Post
-    #generic format : <app>/<model>_<viewtype>.html
-    template_name = 'home_login.html'
-    context_object_name = 'post'
-    ordering = ['-date']
+# class PostListView(ListView):
+#     model = Post
+#     #generic format : <app>/<model>_<viewtype>.html
+#     template_name = 'home_login.html'
+#     context_object_name = 'post'
+#     ordering = ['-date']
+
+
+def posts(request):
+    post = Post.objects.all()
+    likes = Likes.objects.all()
+    context = {
+        'post': post,
+        'likes': likes,
+    }
+    return render(request, 'home_login.html', context )
 
 
 #using generic format this time
@@ -77,21 +85,11 @@ class PostDeleteView(lrm, uptm, DeleteView):
         return False
 
 
-
-def search(request):
-    serch = request.POST.get('search')
-    context = {
-        'serch': serch,
-        'data': data
-    }
-    return render(request, 'home.html', context)
-
-
-def register(request):
+def register(request, *args, **kwargs):
     if request.method == 'POST':
         form = uc(data=request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(*args, **kwargs)
             dj_login(request, user)
             return redirect('/')
     else:
@@ -128,18 +126,19 @@ def like(request, pk):
         uid = request.user.id
         # print(Likes.objects.filter(user=uid).filter(liked_posts=pk).get())
         likes = Likes.objects.filter(user=uid).filter(liked_posts=pk).first()
-        
+        count = len(Likes.objects.filter(liked_posts=pk))
         if likes:
-            pass
+            print('count ------> already--->: ' + str(count))
+            return redirect('home_login')
         else:
             # cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
-            count = len(Likes.objects.filter(liked_posts=pk))
-            print('count : ' + str(count))
+            print('count ------>: ' + str(count))
             l = Likes(count=count+1, liked_posts=pk)
             l.save()
             l.user.add(request.user)
             l.save()
             return redirect('home_login')
+
     
 
 

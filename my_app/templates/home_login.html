@@ -1,7 +1,10 @@
 {%extends 'base.html'%}
+{%load static%}
 
 
 {%block content%}
+
+<script type="text/javascript" src="{% static 'like.js' %}"></script>
 
 <div class="container all-posts ">
   
@@ -11,8 +14,9 @@
               <p>{{post.date}}</p>
               <form action="{%url 'like' post.id %}" method="POST">
                 {%csrf_token%}
-                <button type="submit">like</button>
+                <button type="submit" id="like" >like</button>
               </form>
+              <h5>{{post.likes.like_post}}</h5>
                 {%if user.is_authenticated%}
                     {%if user == post.user%}
                       <form action="{%url 'post_delete' post.id %}" method="POST">

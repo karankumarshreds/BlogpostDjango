@@ -3,11 +3,10 @@ from django.urls import path
 from craigslist import settings
 from django.conf.urls.static import static
 from . import views
-from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
+from .views import PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 urlpatterns = [
     path('', views.home, name="home"),
-    path('home_login', PostListView.as_view(), name="home_login"),
-    path('search', views.search, name="search"),
+    path('home_login', views.posts, name="home_login"),
     path('register', views.register, name="register"),
     path('profile', views.profile, name='profile'),
     path('like/<int:pk>', views.like, name='like'),
