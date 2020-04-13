@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import  User
+from django.contrib.auth.models import  User, AbstractBaseUser, BaseUserManager
 from PIL import Image
 from django.urls import reverse
 

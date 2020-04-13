@@ -76,16 +76,16 @@ class PostDeleteView(lrm, uptm, DeleteView):
             return True
         return False
 
-
+from .forms import RegistrationForm
 def register(request):
     if request.method == 'POST':
-        form = uc(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             dj_login(request, user)
             return redirect('/')
     else:
-        form = uc()
+        form = RegistrationForm()
     context = {
         'form': form
     }
