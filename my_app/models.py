@@ -7,17 +7,20 @@ class Post(models.Model):
     user        = models.ForeignKey(User, on_delete=models.CASCADE)
     title       = models.CharField(max_length=200)
     content     = models.TextField(max_length=600)
-    date        = models.DateTimeField(auto_now=True)
+    date        = models.DateTimeField(auto_now_add=True)
     likes       = models.ManyToManyField(User, blank=True, related_name='post_likes')
 
     ################################################
     ####  This will fetch the url 'post_detail' ####
     ####  and take the 'pk' value and get the   ####
-    ####  object with that pk  and  pass it to  ####
-    ####     to the classView with object       ####
+    ####  object with that pk  and  return it   ####
+    ####    to the classView with object        ####
     ################################################  
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'pk': self.pk})
+    
+    def get_api_like_url(self):
+        return reverse('like-api', kwargs={'pk': self.pk})
     
     def instance(self):
         return self.user
@@ -44,10 +47,8 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
     
-    def save(self):
-        #call the save function to save image/changes
-        #using the super function
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)  
         img = Image.open(self.image.path)
 
         if img.height > 300 or img.width > 300 :

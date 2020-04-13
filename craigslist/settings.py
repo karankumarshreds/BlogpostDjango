@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_app.apps.MyAppConfig',
     'django_cleanup',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # this is to access the media files through
 # the browser, example : /media/profile_pics/image.png
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = 'my_gmail_id_here@gmail.com'
+EMAIL_HOST_PASSWORD = '**********'

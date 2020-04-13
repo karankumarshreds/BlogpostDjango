@@ -3,41 +3,70 @@
 
 
 {%block content%}
-
+<link rel="stylesheet" href="/static/css/style.css">
 <script type="text/javascript" src="{% static 'like.js' %}"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="container all-posts ">
   
             {%for post in post%}
-              <a href="{% url 'post_detail' post.id %}"><h1>{{post.title}}</h1></a>
-              <h2>{{post.content}}</h2>
-              <p>{{post.date}}</p>
-              <h5>{{post.likes.count}}</h5>
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <img src="{{ post.user.profile.image.url }}" alt="" class="circle post-image">
+                <span class="title"><a href="{% url 'post_detail' post.id %}"><h5>{{post.title}}</h5></a></span>
+                <p class="date">{{post.date}}</p>
+                <p class="content">{{post.content}}</p>
               {%if user in post.likes.all%}
-                <form action="{%url 'like' post.id %}" method="POST">
-                  {%csrf_token%}
-                  <button type="submit" id="like" >unlike</button>
-                </form>
+                  <a href="{%url 'like' post.id%}" id='like-button' class="secondary-content">
+                    <i class="material-icons thumb_up">thumb_down</i> 
+                    <i class="material-icons thumb_up_liked">thumb_up</i> 
+                    <p class="likes-count"> {{post.likes.count}} votes</p>
+                  </a>
               {%else%}
-              <form action="{%url 'like' post.id %}" method="POST">
-                {%csrf_token%}
-                <button type="submit" id="like" >like</button>
-              </form>
+                  <a href="{%url 'like' post.id%}" id='like-button' class="secondary-content">
+                    <i class="material-icons thumb_up">thumb_up</i>
+                    <p class="likes-count"> {{post.likes.count}} votes</p>
+                  </a>
+                  <a id='like-button' class="secondary-content">
+                    <i class="material-icons thumb_up">thumb_down</i>
+                  </a>
+              </li>
               {%endif%}
-              
-              <h5>{{post.likes.like_post}}</h5>
-                {%if user.is_authenticated%}
                     {%if user == post.user%}
                       <form action="{%url 'post_delete' post.id %}" method="POST">
                         {%csrf_token%}
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="delete-button"><i class=" small delete material-icons">delete</i></button>
                       </form>
                     {%endif%}
-                {%endif%}
+            </ul>          
             {%endfor%}
+      
+    
+{%if is_paginated%}
+<ul class="pagination container-fluid" align="center">
+            
+              {%if page_obj.has_previous%}
+              <li class="waves-effect active"><a class=" blue lighten-1 " href="?page={{page_obj.previous_page_number}}"><i class="material-icons chevron_right">chevron_left</i></a></li>        
+              <li class="waves-effect"><a  href="?page=1">First</a></li>
+                      
+              {%endif%}
+              {% for num in page_obj.paginator.page_range %}
+                {%if page_obj.number == num %}
+                <li class="active  blue lighten-1">
+                <a href="?page={{num}}"" class="waves-effect waves-light">{{num}}</a></li>
+                {%elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2'%}
+                <li class="waves-effect"><a href="?page={{num}}">{{num}}</a></li>
+                {%endif%}
+              {%endfor%}
+              {%if page_obj.has_next%}
+              <li class="waves-effect"><a href="#!">Last</a></li> 
+              <li class="waves-effect active"><a class=" blue lighten-1 " href="?page={{page_obj.next_page_number}}"><i class="material-icons chevron_right">chevron_right</i></a></li>
+              {%endif%}
+</ul>
+            {%endif%}
           
-            </div>
-
+            
+          </br>
+</div>
 
 
 {%endblock%}

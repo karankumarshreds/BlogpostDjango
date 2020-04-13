@@ -1,4 +1,4 @@
-.express{
+  .express{
     color: #338cd4 !important;
     font-weight: 500 !important;  
     font-family: 'Baloo Thambi 2', cursive;
@@ -8,11 +8,22 @@
     margin-bottom: 75px !important;
   }
 
+  .pagination{
+    height: 100% !important;
+  }
+  .brand{
+    margin-top: 10px !important;
+    width: 10em !important;
+  }
   .quote-second{
     padding: 5% !important;
   }
   .parallax{
     position:static !important;
+  }
+  .all-posts{
+    margin-top: 80px !important;
+    
   }
   .profile{
     color: #64b5f6 !important;
@@ -35,22 +46,28 @@
   .nav-dp{
     margin-top: 27px !important;
     border-radius: 50%;
-    margin-left: 5px !important;
+    margin-left: 10px !important;
   }
   .brand-logo{
+    size: 10px !important;
     color: #64b5f6 !important;
     margin-top: 18px !important;
-    /* font-family:'Oswald', sans-serif !important; */
     font-family: 'Baloo Thambi 2', cursive;
     font-size: 3em !important;
     font-weight: 900;
-    padding-right: 5% !important;
+    padding-right: 10% !important;
   }
   .navbar{
     width: 90%;
-    /* font-family:'Oswald', sans-serif !important; */
+    color: #64b5f6 !important;
     font-family: 'Baloo Thambi 2', cursive;
   }
+
+  li.active {
+    background-color:rgb(32, 153, 166)!important;
+  }
+
+
 
   .card-title{
     font-family: 'Baloo Thambi 2', cursive;
@@ -85,7 +102,58 @@
   }
   
   .material-icons{
-    font-size: 50px !important;
+    font-size: 40px !important;
+    display: inline-flex !important;
+    vertical-align: top !important;
+  }
+
+  .chevron_right{
+    font-size: 28px !important;
+    vertical-align: middle !important;
+    margin-bottom: 1px !important;
+  }
+
+  .collection{
+    margin-bottom: 20px !important;
+  }
+  .collection-item{
+    padding-bottom: 2% !important;
+  }
+  .post-image{
+    margin-top: 14px !important;
+  }
+  
+  .date{
+    font-size: smaller !important;
+  }
+  .content{
+    font-weight: 480 !important;
+  }
+  .likes-count{
+    color: rgb(57, 143, 217) !important;
+    font-size: 13px !important;
+    font-weight: 600 ;
+  }
+  .thumb_up{
+    font-size: 19px !important;
+    margin-top: 8px !important;
+    margin-bottom: 5px !important;
+    color: rgba(42, 135, 215, 0.827) !important;
+  }
+  .thumb_up_liked{
+    margin-top: 3px !important;
+    font-size: 19px !important;
+    color: rgb(43, 134, 214) !important;
+  }
+
+  .delete{
+    border-color: white ;
+    margin-left: 10px !important;
+    font-size: 19px !important;
+    color: rgba(181, 181, 181, 0.814) !important;
+  }
+  .delete-button{
+    border-color: white !important;
   }
   .get-started{
     margin-left: 42px !important;

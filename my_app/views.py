@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.forms import  UserCreationForm as uc
 from django.contrib.auth.forms import AuthenticationForm as af
 from django.contrib.auth import login as dj_login
@@ -15,7 +15,8 @@ from django.views.generic import (ListView,
                                 DetailView, 
                                 CreateView, 
                                 UpdateView,
-                                DeleteView)
+                                DeleteView,
+                                RedirectView)
 
 
 def home(request):
@@ -23,22 +24,13 @@ def home(request):
     return render(request, 'home.html', {'post': post})
 
 
-# class PostListView(ListView):
-#     model = Post
-#     #generic format : <app>/<model>_<viewtype>.html
-#     template_name = 'home_login.html'
-#     context_object_name = 'post'
-#     ordering = ['-date']
-
-
-def posts(request):
-    post = Post.objects.all()
-    likes = Likes.objects.all()
-    context = {
-        'post': post,
-        'likes': likes,
-    }
-    return render(request, 'home_login.html', context )
+class PostListView(ListView):
+    model = Post
+    #generic format : <app>/<model>_<viewtype>.html
+    template_name = 'home_login.html'
+    context_object_name = 'post'
+    ordering = ['-date']
+    paginate_by = 5
 
 
 #using generic format this time
@@ -85,11 +77,11 @@ class PostDeleteView(lrm, uptm, DeleteView):
         return False
 
 
-def register(request, *args, **kwargs):
+def register(request):
     if request.method == 'POST':
-        form = uc(data=request.POST)
+        form = uc(request.POST)
         if form.is_valid():
-            user = form.save(*args, **kwargs)
+            user = form.save()
             dj_login(request, user)
             return redirect('/')
     else:
@@ -144,11 +136,47 @@ def like(request, pk):
     instance = Post.objects.filter(id=pk).get()
     if request.user in instance.likes.all():
         instance.likes.remove(uid)
+        instance.save()
         return redirect('home_login')
     else:    
         instance.likes.add(uid)
         instance.save()
         return redirect('home_login')
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+from django.contrib.auth.models import User
+
+class PostLikeToggle(APIView):
+    model = Post
+    authentication_classes = [authentication.SessionAuthentication]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request, pk):
+        uid         = request.user.id 
+        instance    = Post.objects.filter(id=pk).get()
+        updated     = True 
+        liked       = False 
+        likes       = 0
+        print('likes are ---->' + str(likes))
+        if request.user in instance.likes.all():
+            instance.likes.remove(uid)
+            liked = False
+            likes       = instance.likes.count()
+        else:    
+            instance.likes.add(uid)
+            liked = True
+            likes       = instance.likes.count()
+        data = {
+            'liked': liked,
+            'updated': updated,
+            'likes': likes,
+        } 
+        return Response(data)
+
 
 
 #my long way for profile + update
@@ -173,9 +201,11 @@ def like(request, pk):
 def profile(request):
     user_id = request.user.id
     instance_user = User.objects.filter(id=user_id).first()
+    user_posts = Post.objects.filter(user=user_id)
     context = {
         'user': instance_user.profile.user,
         'image': instance_user.profile.image.url,
+        'posts': user_posts,
     }
     return render(request, 'profile.html', context)
 

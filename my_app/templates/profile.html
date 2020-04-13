@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>User Profile</h2>
-{{ user }}
+<div class="container">
+<h2>{{user}}</h2>
+
 <img src="{{ image }}" width="100">
 {#{{ image }}#}
 
@@ -16,4 +17,11 @@
 {#        <button type="submit">save</button>#}
 {#    </form>#}
 {#{% endif %}#}
+
+{%for post in posts%}
+    <h5>{{post.title}}</h5>
+    <p>{{post.content}}</p>
+{%endfor%}
+</div>
+
 {% endblock %}

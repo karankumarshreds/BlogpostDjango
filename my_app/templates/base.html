@@ -20,12 +20,13 @@
     <div class="nav-wrapper container navbar ">
       {%if user.is_authenticated%}
       <a href="{%url 'home_login'%}" class="brand-logo left">ReachOut <i class=" medium material-icons ">bubble_chart</i></a>
-      <ul id="nav-mobile" class="right">
         
       {%else%}
+                
       <a href="/" class="brand-logo left">ReachOut <i class=" medium material-icons ">bubble_chart</i></a>
-      <ul id="nav-mobile" class="right">
+      
       {%endif%}
+      <ul id="nav-mobile" class="right">
         {%if user.is_authenticated%}
           <li><img class="nav-dp" src="{{ user.profile.image.url }}" width="40" align="center""></li>
           <li><a class = "profile" href="{% url 'profile' %}">profile</a></li>
