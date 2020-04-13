@@ -148,34 +148,36 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
-
+import json
 class PostLikeToggle(APIView):
     model = Post
     authentication_classes = [authentication.SessionAuthentication]
     # permission_classes = [permissions.IsAuthenticated]
     permission_classes = (permissions.AllowAny,)
-
+    
     def get(self, request, pk):
         uid         = request.user.id 
         instance    = Post.objects.filter(id=pk).get()
         updated     = True 
         liked       = False 
-        likes       = 0
+        likes       = instance.likes.count()
         print('likes are ---->' + str(likes))
         if request.user in instance.likes.all():
             instance.likes.remove(uid)
-            liked = False
-            likes       = instance.likes.count()
+            likes   = instance.likes.count()
+            instance.save()
+            liked = False  
         else:    
             instance.likes.add(uid)
+            likes   = instance.likes.count()
+            instance.save()
             liked = True
-            likes       = instance.likes.count()
         data = {
             'liked': liked,
             'updated': updated,
             'likes': likes,
         } 
-        return Response(data)
+        return HttpResponse(json.dumps(data))
 
 
 

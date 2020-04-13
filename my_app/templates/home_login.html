@@ -7,7 +7,6 @@
 <script type="text/javascript" src="{% static 'like.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="container all-posts ">
-  
             {%for post in post%}
             <ul class="collection">
               <li class="collection-item avatar">
@@ -15,28 +14,17 @@
                 <span class="title"><a href="{% url 'post_detail' post.id %}"><h5>{{post.title}}</h5></a></span>
                 <p class="date">{{post.date}}</p>
                 <p class="content">{{post.content}}</p>
-              {%if user in post.likes.all%}
-                  <a href="{%url 'like' post.id%}" id='like-button' class="secondary-content">
-                    <i class="material-icons thumb_up">thumb_down</i> 
-                    <i class="material-icons thumb_up_liked">thumb_up</i> 
-                    <p class="likes-count"> {{post.likes.count}} votes</p>
-                  </a>
-              {%else%}
-                  <a href="{%url 'like' post.id%}" id='like-button' class="secondary-content">
-                    <i class="material-icons thumb_up">thumb_up</i>
-                    <p class="likes-count"> {{post.likes.count}} votes</p>
-                  </a>
                   <a id='like-button' class="secondary-content">
-                    <i class="material-icons thumb_up">thumb_down</i>
+                      <i class="material-icons thumb_up_liked" id="thumb_up" data-id={{post.id}}>thumb_up</i> 
+                      <p class="likes-count" id="likes-count"> {{post.likes.count}} votes</p>
                   </a>
-              </li>
-              {%endif%}
                     {%if user == post.user%}
                       <form action="{%url 'post_delete' post.id %}" method="POST">
                         {%csrf_token%}
                         <button type="submit" class="delete-button"><i class=" small delete material-icons">delete</i></button>
                       </form>
                     {%endif%}
+                  </li>
             </ul>          
             {%endfor%}
       
@@ -67,6 +55,34 @@
             
           </br>
 </div>
+
+<script>
+window.onload = function(){
+  var thumb_up = document.getElementById('thumb_up');
+  thumb_up.style.cursor = 'pointer';
+  thumb_up.onclick = function(){
+    var req = new XMLHttpRequest();
+    var id = this.getAttribute('data-id');
+    var url = 'http://localhost:8000/api/like/'+id+'?format=json';
+    req.onreadystatechange = function(){
+      if(this.readyState==4 && this.status==200){
+        // var data = eval(req.responseText);
+        data = JSON.parse(req.responseText);
+        var likes = data.likes;
+        document.getElementById('likes-count').innerHTML = likes+' votes';
+        // //changing color
+        // if(data.liked=='true'){
+        //   thumb_up.className = "material-icons thumb_up_liked";
+        // } else{
+        //   thumb_up.className = "material-icons thumb_up";
+        // }
+      }
+    };
+    req.open("GET", url, true);
+    req.send();
+  }
+}
+</script>
 
 
 {%endblock%}

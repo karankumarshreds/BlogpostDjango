@@ -134,15 +134,16 @@
     color: rgb(57, 143, 217) !important;
     font-size: 13px !important;
     font-weight: 600 ;
+    margin-right: 5px !important;
   }
   .thumb_up{
     font-size: 19px !important;
     margin-top: 8px !important;
     margin-bottom: 5px !important;
-    color: rgba(42, 135, 215, 0.827) !important;
+    color: rgba(62, 142, 212, 0.765) !important;
   }
   .thumb_up_liked{
-    margin-top: 3px !important;
+    margin-top: 9px !important;
     font-size: 19px !important;
     color: rgb(43, 134, 214) !important;
   }
