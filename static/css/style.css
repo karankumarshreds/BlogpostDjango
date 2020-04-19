@@ -1,173 +1,168 @@
-  .express{
-    color: #338cd4 !important;
-    font-weight: 500 !important;  
-    font-family: 'Baloo Thambi 2', cursive;
-  }
-  .quote{
-    color: black !important;
-    margin-bottom: 75px !important;
-  }
+.express{
+  color: #338cd4 !important;
+  font-weight: 500 !important;  
+  font-family: 'Baloo Thambi 2', cursive;
+}
+.quote{
+  color: black !important;
+  margin-bottom: 75px !important;
+}
 
-  .pagination{
-    height: 100% !important;
-  }
-  .brand{
-    margin-top: 10px !important;
-    width: 10em !important;
-  }
-  .quote-second{
-    padding: 5% !important;
-  }
-  .parallax{
-    position:static !important;
-  }
-  .all-posts{
-    margin-top: 80px !important;
-    
-  }
-  .profile{
-    color: #64b5f6 !important;
-    font-weight: 500 !important;
-    font-size: larger !important;
-    margin-top: 16px !important;
-  }
-  .register{
-    color: #64b5f6 !important;
-    font-weight: 500 !important;
-    font-size: larger !important;
-    margin-top: 16px !important;
-  }
-  .login{
-    color: #64b5f6 !important;
-    font-weight: 500 !important;
-    font-size: larger !important;
-    margin-top: 16px !important;
-  }
-  .nav-dp{
-    margin-top: 27px !important;
-    border-radius: 50%;
-    margin-left: 10px !important;
-  }
-
-  .brand-logo{
-    size: 10px !important;
-    color: #64b5f6 !important;
-    margin-top: 18px !important;
-    font-family: 'Baloo Thambi 2', cursive;
-    font-size: 3em !important;
-    font-weight: 900;
-    padding-right: 10% !important;
-  }
-  .navbar{
-    width: 90%;
-    color: #64b5f6 !important;
-    font-family: 'Baloo Thambi 2', cursive;
-  }
-
-  li.active {
-    background-color:rgb(32, 153, 166)!important;
-  }
-
-
-
-  .card-title{
-    font-family: 'Baloo Thambi 2', cursive;
-    /* font-family:'Oswald', sans-serif !important; */
-    padding-top: 60px;
-    padding-left: 40px;
-    font-size: 3.5em !important;
-    font-weight: 800 !important;
-    /* color: #1f8fea; */
-    color: white !important;
-    
-  }
-  h2.card-title{
-    text-shadow: black !important;
-    
-  }
-  .navbar-bar{
-    height: 70px;
-    box-shadow: none !important;
-  }
-  .card{
-    font-family: 'Baloo Thambi 2', cursive;
-    box-shadow: none !important;
-  }
-
-  .card-background{
-    background-image: url('/static/images/banner2.jpg') !important;
-    background-size: 100% 100% !important;
-    width: 100% !important;
-    height: 500px !important;
-    background-size: cover !important;
-  }
+.pagination{
+  height: 100% !important;
+}
+.brand{
+  margin-top: 10px !important;
+  width: 10em !important;
+}
+.quote-second{
+  padding: 5% !important;
+}
+.parallax{
+  position:static !important;
+}
+.all-posts{
+  margin-top: 80px !important;
   
-  .material-icons{
-    font-size: 40px !important;
-    display: inline-flex !important;
-    vertical-align: top !important;
-  }
+}
+.profile{
+  color: #64b5f6 !important;
+  font-weight: 500 !important;
+  font-size: larger !important;
+  margin-top: 16px !important;
+}
+.register{
+  color: #64b5f6 !important;
+  font-weight: 500 !important;
+  font-size: larger !important;
+  margin-top: 16px !important;
+}
+.login{
+  color: #64b5f6 !important;
+  font-weight: 500 !important;
+  font-size: larger !important;
+  margin-top: 16px !important;
+}
+.nav-dp{
+  margin-top: 27px !important;
+  border-radius: 50%;
+  margin-left: 10px !important;
+}
 
-  .chevron_right{
-    font-size: 28px !important;
-    vertical-align: middle !important;
-    margin-bottom: 1px !important;
-  }
+.brand-logo{
+  size: 10px !important;
+  color: #64b5f6 !important;
+  margin-top: 18px !important;
+  font-family: 'Baloo Thambi 2', cursive;
+  font-size: 3em !important;
+  font-weight: 900;
+  padding-right: 10% !important;
+}
+.navbar{
+  width: 90%;
+  color: #64b5f6 !important;
+  font-family: 'Baloo Thambi 2', cursive;
+}
 
-  .collection{
-    margin-bottom: 20px !important;
-  }
-  .collection-item{
-    padding-bottom: 2% !important;
-  }
-  .post-image{
-    margin-top: 14px !important;
-  }
+li.active {
+  background-color:rgb(32, 153, 166)!important;
+}
+
+
+
+.card-title{
+  font-family: 'Baloo Thambi 2', cursive;
+  padding-top: 60px;
+  padding-left: 40px;
+  font-size: 3.5em !important;
+  font-weight: 800 !important;
+  /* color: #1f8fea; */
+  color: white !important;
   
-  .date{
-    font-size: smaller !important;
-  }
-  .content{
-    font-weight: 480 !important;
-  }
-  .likes-count{
-    color: rgb(57, 143, 217) !important;
-    font-size: 13px !important;
-    font-weight: 600 ;
-    margin-right: 5px !important;
-  }
-  .thumb_up{
-    font-size: 19px !important;
-    margin-top: 8px !important;
-    margin-bottom: 5px !important;
-    color: rgba(62, 142, 212, 0.765) !important;
-  }
-  .thumb_up_liked{
-    margin-top: 9px !important;
-    font-size: 19px !important;
-    color: rgb(43, 134, 214) !important;
-  }
+}
+h2.card-title{
+  text-shadow: black !important;
+  
+}
+.navbar-bar{
+  height: 70px;
+  box-shadow: none !important;
+}
+.card{
+  font-family: 'Baloo Thambi 2', cursive;
+  box-shadow: none !important;
+}
 
-  .delete{
-    border-color: white ;
-    margin-left: 10px !important;
-    font-size: 19px !important;
-    color: rgba(181, 181, 181, 0.814) !important;
-  }
-  .delete-button{
-    border-color: white !important;
-  }
-  .get-started{
-    margin-left: 42px !important;
-    font-family: 'Baloo Thambi 2', cursive !important;
-    font-weight: 500 !important;
-  }
+.card-background{
+  background-image: url('/static/images/banner2.jpg') !important;
+  background-size: 100% 100% !important;
+  width: 100% !important;
+  height: 500px !important;
+  background-size: cover !important;
+}
 
-  .backgound3{
-      max-width: 100% !important;
-      image-resolution: auto;
-  }
+.material-icons{
+  font-size: 40px !important;
+  display: inline-flex !important;
+  vertical-align: top !important;
+}
 
-  .cards{
-      margin-top: 20px !important;
-  }
+.chevron_right{
+  font-size: 28px !important;
+  vertical-align: middle !important;
+  margin-bottom: 1px !important;
+}
+.collection{
+  font-family: 'Baloo Thambi 2', cursive;
+  margin-bottom: 20px !important;
+}
+.collection-item{
+  padding-bottom: 2% !important;
+  font-family: 'Baloo Thambi 2', cursive;
+}
+.post-image{
+  margin-top: 14px !important;
+}
+
+.date{
+  font-size: smaller !important;
+}
+.content{
+  font-weight: 480 !important;
+}
+.likes-count{
+  color: rgb(57, 143, 217) !important;
+  font-size: 13px !important;
+  font-weight: 600 ;
+  margin-right: 5px !important;
+}
+.thumb_up{
+  color: rgba(62, 142, 212, 0.765) !important;
+}
+.thumb_up_liked{
+  color: rgb(43, 134, 214) !important;
+}
+
+.delete{
+  border-color: white ;
+  margin-left: 10px !important;
+  font-size: 19px !important;
+  color: rgba(181, 181, 181, 0.814) !important;
+}
+.delete-button{
+  border-color: white !important;
+}
+.get-started{
+  margin-left: 42px !important;
+  font-family: 'Baloo Thambi 2', cursive !important;
+  font-weight: 500 !important;
+}
+
+.backgound3{
+    max-width: 100% !important;
+    image-resolution: auto;
+}
+
+.cards{
+    margin-top: 20px !important;
+}

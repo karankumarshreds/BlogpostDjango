@@ -23,6 +23,25 @@ def home(request):
     post = Post.objects.all()
     return render(request, 'home.html', {'post': post})
 
+import json
+def for_like(request):
+    if request.method == 'GET':
+        posts = Post.objects.all()
+        likedPosts = []
+        liked_data = {
+            'liked_posts' : likedPosts
+        }
+        final_data = []
+        for post in posts:
+            if request.user in post.likes.all():
+                likedPosts.append(post.id)
+        print('############now ? ')
+        final_data.append(liked_data)
+        print(final_data)
+        return HttpResponse(json.dumps(final_data))
+    
+
+
 
 class PostListView(ListView):
     model = Post
@@ -31,6 +50,7 @@ class PostListView(ListView):
     context_object_name = 'post'
     ordering = ['-date']
     paginate_by = 5
+    
 
 
 #using generic format this time
@@ -113,35 +133,18 @@ def logout(request):
     dj_logout(request)
     return redirect ('/')
 
-# def like(request, pk):
-#     if request.method == 'POST':
-#         uid = request.user.id
-#         # print(Likes.objects.filter(user=uid).filter(liked_posts=pk).get())
-#         likes = Likes.objects.filter(user=uid).filter(liked_posts=pk).first()
-#         count = len(Likes.objects.filter(liked_posts=pk))
-#         if likes:
-#             print('count ------> already--->: ' + str(count))
-#             return redirect('home_login')
-#         else:
-#             # cnt = int(Likes.objects.filter(user=uid).filter(liked_posts=pk).first().count)
-#             print('count ------>: ' + str(count))
-#             l = Likes(count=count+1, liked_posts=pk)
-#             l.save()
-#             l.user.add(request.user)
-#             l.save()
-#             return redirect('home_login')
 
-def like(request, pk):
-    uid = request.user.id 
-    instance = Post.objects.filter(id=pk).get()
-    if request.user in instance.likes.all():
-        instance.likes.remove(uid)
-        instance.save()
-        return redirect('home_login')
-    else:    
-        instance.likes.add(uid)
-        instance.save()
-        return redirect('home_login')
+# def like(request, pk):
+#     uid = request.user.id 
+#     instance = Post.objects.filter(id=pk).get()
+#     if request.user in instance.likes.all():
+#         instance.likes.remove(uid)
+#         instance.save()
+#         return redirect('home_login')
+#     else:    
+#         instance.likes.add(uid)
+#         instance.save()
+#         return redirect('home_login')
 
 
 from rest_framework.views import APIView
@@ -164,21 +167,20 @@ class PostLikeToggle(APIView):
         print('likes are ---->' + str(likes))
         if request.user in instance.likes.all():
             instance.likes.remove(uid)
-            likes   = instance.likes.count()
+            likes = instance.likes.count()
             instance.save()
-            liked = False  
+            liked = 'false'  
         else:    
             instance.likes.add(uid)
             likes   = instance.likes.count()
             instance.save()
-            liked = True
+            liked = 'true'
         data = {
             'liked': liked,
             'updated': updated,
             'likes': likes,
         } 
         return HttpResponse(json.dumps(data))
-
 
 
 #my long way for profile + update

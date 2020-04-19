@@ -1,0 +1,62 @@
+
+
+kubectl get all -o wide
+watch kubectl get all -o wide 
+kubectl get pods -l run=nginx    //run=nginx is the label name 
+
+###scaling###
+kubectl scale deployment nginx-deployment --replicas=10
+kubectl scale deploy     nginx-deployment --replicas=11
+
+###namespaces###
+kubectl get namespace 
+kubectl get ns 
+kubectl create namespace <namespace_name>
+kubectl creare ns <namespace_name>
+kubectl get pods --namespace=<namespace_name>
+kubectl get pods -n <namespace_name>
+
+###switching namespaces###
+kubectl create ns demo-ns
+kubectl config get-contexts   //you will get contexts affiliated to namespaces
+kubectl config set-context demo-context --namespace=demo-ns 
+kubectl config use-context demo-context   //now you're in demo-ns namespace 
+
+
+
+
+######## pod ########
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+
+######## replicaSet ########
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: nginx-replicaSet
+  labels: 
+    run: nginx  
+spec:
+  #pod template
+  template: 
+    metadata: 
+      labels: 
+        run: nginx
+    spec: 
+      containers:
+      - image: nginx 
+        name: nginx 
+  #pod selecion
+  replicas: 2
+  selector:
+    matchLabels:
+      run: nginx 
+
+
+
