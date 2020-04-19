@@ -129,17 +129,21 @@ h2.card-title{
 }
 .content{
   font-weight: 480 !important;
+  padding-top: 10px !important;
+  padding-right: 20px !important;
 }
 .likes-count{
   color: rgb(57, 143, 217) !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   font-weight: 600 ;
   margin-right: 5px !important;
 }
 .thumb_up{
+  font-size: 20px !important;
   color: rgba(62, 142, 212, 0.765) !important;
 }
 .thumb_up_liked{
+  font-size: 20px !important;
   color: rgb(43, 134, 214) !important;
 }
 

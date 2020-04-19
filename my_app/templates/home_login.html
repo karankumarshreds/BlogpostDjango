@@ -13,12 +13,13 @@
   <ul class="collection">
     <li class="collection-item avatar">
       <img src="{{ post.user.profile.image.url }}" alt="" class="circle post-image">
-      <span class="title"><a href="{% url 'post_detail' post.id %}"><h5>{{post.title}}</h5></a></span>
+      <!-- <span class="title"><a href="{% url 'post_detail' post.id %}"><h5>{{post.title}}</h5></a></span> -->
+      <span class="title"><a href="{% url 'post_detail' post.id %}">{{post.user}}</a></span>
       <p class="date">{{post.date}}</p>
       <p class="content">{{post.content}}</p>
         <a id='like-button' class="secondary-content">
           <i class="material-icons" id="thumb_up" data-id={{post.id}}>thumb_up</i> 
-          <p class="likes-count" id="likes-count"> {{post.likes.count}} votes</p>
+          <p class="likes-count" id="likes-count"> {{post.likes.count}} ups</p>
         </a>
           {%if user == post.user%}
            <form action="{%url 'post_delete' post.id %}" method="POST">
@@ -61,16 +62,13 @@ window.onload = function(){
   const all_likes = document.querySelectorAll('#thumb_up');
   
   var xml = new XMLHttpRequest();
-  let baseurl = 'http://localhost:8000/test';
+  let baseurl = '/test';
   xml.onreadystatechange = function(){
     if(this.readyState===4 && this.status==200){
       data = JSON.parse(xml.responseText);
       let tmp_arr = data[0].liked_posts; //django
       for(let i of all_likes){
-        local_id = i.getAttribute('data-id');
-        local_id = parseInt(local_id);
-        console.log('local_id', local_id);
-        console.log('tmp_arr', tmp_arr );
+        local_id = parseInt(i.getAttribute('data-id'));
         if (tmp_arr.includes(local_id) == true ){
           i.className = 'material-icons thumb_up_liked';
         } else {
@@ -79,7 +77,6 @@ window.onload = function(){
       };
     };
   };
-       
   xml.open('GET', baseurl, true);
   xml.send(); 
 
@@ -95,7 +92,7 @@ window.onload = function(){
         // var data = eval(req.responseText);
         data = JSON.parse(req.responseText);
         var likes = data.likes;
-        document.getElementById('likes-count').innerHTML = likes+' votes';
+        document.getElementById('likes-count').innerHTML = likes+' ups';
         //changing color
         if(data.liked=='true'){
           thumb_up.className = "material-icons thumb_up_liked";
